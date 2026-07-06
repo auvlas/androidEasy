@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <permission
+        android:name="org.auvlas.androidEasy.permission.USE_ANDROID_EASY_SERVICE"
+        android:protectionLevel="normal" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,6 +14,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidEasy" />
+        android:theme="@style/Theme.AndroidEasy">
 
+        <service
+            android:name=".Grid"
+            android:exported="true"
+            android:permission="org.auvlas.androidEasy.permission.USE_ANDROID_EASY_SERVICE">
+            <intent-filter>
+                <action android:name="org.auvlas.androidEasy.BIND_SERVICE" />
+            </intent-filter>
+        </service>
+
+    </application>
 </manifest>
