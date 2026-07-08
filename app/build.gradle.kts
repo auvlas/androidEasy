@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
+    id("maven-publish")
 }
 
 android {
@@ -11,13 +12,34 @@ android {
     }
 
     defaultConfig {
-        applicationId = "org.auvlas.androidEasy"
         minSdk = 24
-        targetSdk = 36
+
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags += "-std=c++17"
+
+                abiFilters("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
+    }
+
+    splits {
+        abi {
+            isEnable = false
+            isUniversalApk = false
+        }
     }
 
     buildTypes {
@@ -33,11 +55,41 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+    buildFeatures {
+        viewBinding = true
+    }
+
+    publishing {
+        singleVariant("release")
+    }
+
+    afterEvaluate {
+        publishing {
+            publications {
+                create<MavenPublication>("release") {
+                    from(components["release"])
+
+                    groupId = "org.auvlas.androideasy"
+                    artifactId = "shared-core"
+                    version = "1.0.0"
+                }
+            }
+        }
+    }
 }
 
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.constraintlayout)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

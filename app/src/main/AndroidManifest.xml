@@ -16,14 +16,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidEasy">
 
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AndroidEasy">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <library android:name="org.auvlas.androidEasy.shared_core" />
+
         <service
-            android:name=".Grid"
+            android:name=".EasyService"
             android:exported="true"
             android:permission="org.auvlas.androidEasy.permission.USE_ANDROID_EASY_SERVICE">
             <intent-filter>
                 <action android:name="org.auvlas.androidEasy.BIND_SERVICE" />
             </intent-filter>
         </service>
-
     </application>
+
 </manifest>

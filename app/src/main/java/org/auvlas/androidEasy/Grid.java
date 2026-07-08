@@ -49,14 +49,17 @@ public class Grid extends View implements ScaleGestureDetector.OnScaleGestureLis
     private Scale m_scaleWidth = null;
     private Scale m_scaleHeight = null;
 
-    enum Scale {
+    protected enum Scale {
         SMALL, BIG
     }
 
-    interface Map {
+    public interface Map {
         public long getCols();
 
         public long getRows();
+
+        public long getSize();
+        public int click(long row, long col);
     }
 
     public Grid(Context context, AttributeSet attrs) {
@@ -212,11 +215,11 @@ public class Grid extends View implements ScaleGestureDetector.OnScaleGestureLis
         postInvalidateOnAnimation();
     }
 
-    public Map getMinsField() {
+    public Map getMap() {
         return m_map;
     }
 
-    public void setMinsField(Map map) {
+    public void setMap(Map map) {
         m_map = map;
 
         m_offsetLeft = 0;
