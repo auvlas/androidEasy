@@ -7,13 +7,15 @@ import android.util.Log;
 
 public class EasyService extends Service {
 
+    static {
+        System.loadLibrary("sapper");
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         Log.d("AndroidEasy", "The library core has been successfully launched in the system!");
-
-        System.loadLibrary("sapper");
     }
 
     @Override

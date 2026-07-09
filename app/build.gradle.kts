@@ -20,11 +20,13 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         externalNativeBuild {
-            cmake {
-                cppFlags += "-std=c++17"
 
+            cmake {
                 abiFilters("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
             }
+        }
+        ndk {
+            abiFilters.addAll(setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
         }
     }
 
@@ -32,6 +34,33 @@ android {
         cmake {
             path = file("src/main/cpp/CMakeLists.txt")
             version = "3.22.1"
+        }
+    }
+
+    buildTypes {
+        getByName("debug") {
+            isMinifyEnabled = false
+
+            packaging {
+                jniLibs {
+                    excludes.add("lib/**/libsapper.so")
+                    excludes.add("lib/**/*.so")
+                }
+            }
+
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        getByName("release") {
+            isMinifyEnabled = false
+
+            packaging {
+                jniLibs {
+                    excludes.add("lib/**/libsapper.so")
+                    excludes.add("lib/**/*.so")
+                }
+            }
+
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
