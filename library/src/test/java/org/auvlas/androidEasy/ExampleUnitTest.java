@@ -1,4 +1,4 @@
-package org.auvlas.androidEasy;
+package org.auvlas.hub;
 
 import org.junit.Test;
 

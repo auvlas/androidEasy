@@ -1,4 +1,4 @@
-package org.auvlas.androidEasy;
+package org.auvlas.androidEasy.hub;
 
 import android.os.Bundle;
 
@@ -13,7 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import org.auvlas.androidEasy.databinding.ActivityMainBinding;
+import org.auvlas.androidEasy.hub.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

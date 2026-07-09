@@ -1,11 +1,7 @@
 package org.auvlas.androidEasy;
 
-import static android.view.MotionEvent.ACTION_CANCEL;
-import static android.view.MotionEvent.ACTION_DOWN;
-import static android.view.MotionEvent.ACTION_MOVE;
-import static android.view.MotionEvent.ACTION_UP;
-import static org.auvlas.androidEasy.Grid.Scale.BIG;
-import static org.auvlas.androidEasy.Grid.Scale.SMALL;
+import static android.view.MotionEvent.*;
+import static org.auvlas.androidEasy.Grid.Scale.*;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package org.auvlas.androidEasy;
+package org.auvlas.androidEasy.hub;
 
 import android.app.Service;
 import android.content.Intent;

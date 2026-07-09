@@ -25,4 +25,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidEasy"
 include(":app")
- 
+include(":library")
