@@ -15,6 +15,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.util.TypedValueCompat;
 
 public class Grid extends View implements ScaleGestureDetector.OnScaleGestureListener {
@@ -58,8 +59,20 @@ public class Grid extends View implements ScaleGestureDetector.OnScaleGestureLis
         public int click(long row, long col);
     }
 
-    public Grid(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public Grid(Context context) {
+        this(context, null);
+    }
+
+    public Grid(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public Grid(Context context, @Nullable AttributeSet attrs, int defStylyAttr) {
+        this(context, attrs, defStylyAttr, 0);
+    }
+
+    public Grid(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
 
         m_paint.setColor(0xffffffff);
 
